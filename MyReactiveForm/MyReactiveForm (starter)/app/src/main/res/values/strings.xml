@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Reactive Form</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="email_not_valid">Format email tidak valid!</string>
+    <string name="password_not_valid">Password kurang dari 6 karakter!</string>
+    <string name="password_not_same">Password tidak sama!</string>
+</resources>
