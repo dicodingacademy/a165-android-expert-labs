@@ -1,0 +1,2 @@
+rootProject.name='My Reactive Search'
+include ':app'
