@@ -1,0 +1,4 @@
+<resources>
+<string name="app_name">My Report App</string>
+<string name="crash_this_app">Crash this app!</string>
+</resources>
