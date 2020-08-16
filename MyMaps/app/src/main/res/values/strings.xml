@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Maps</string>
+    <string name="access_token">pk.eyJ1IjoiYXJpZmFpemluIiwiYSI6ImNrYTI2c3R1cjAwNXAzbm1zaDYyZW1ra2cifQ.okSWF0zf58rWkhoVuYjShQ</string>
+    <string name="start_navigation">Start Navigation</string>
+</resources>
