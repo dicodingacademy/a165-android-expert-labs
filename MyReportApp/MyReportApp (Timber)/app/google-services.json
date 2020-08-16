@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "900656687434",
+    "firebase_url": "https://dicoding-project-aefa6.firebaseio.com",
+    "project_id": "dicoding-project-aefa6",
+    "storage_bucket": "dicoding-project-aefa6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900656687434:android:41c572978c45c8b09bb9b3",
+        "android_client_info": {
+          "package_name": "com.dicoding.myreportapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900656687434-t5e6246fsv20crn6rcdhvea940ovenbj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dicoding.myreportapp",
+            "certificate_hash": "b95b2b2f6dd912bb194d3c0e63fd88bb44c9a510"
+          }
+        },
+        {
+          "client_id": "900656687434-a77c767g7r2jrmail51kpgcl5n6l6klr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC26KQfhR_AzvFQB1A0h_nb8UGVuQSlkAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900656687434-a77c767g7r2jrmail51kpgcl5n6l6klr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900656687434:android:5e6dba5337026e8b9bb9b3",
+        "android_client_info": {
+          "package_name": "com.dicoding.picodiploma.myworkmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900656687434-du5cjimp8th71n609pasvp9pj0obbkhb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dicoding.picodiploma.myworkmanager",
+            "certificate_hash": "b95b2b2f6dd912bb194d3c0e63fd88bb44c9a510"
+          }
+        },
+        {
+          "client_id": "900656687434-a77c767g7r2jrmail51kpgcl5n6l6klr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC26KQfhR_AzvFQB1A0h_nb8UGVuQSlkAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900656687434-a77c767g7r2jrmail51kpgcl5n6l6klr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
