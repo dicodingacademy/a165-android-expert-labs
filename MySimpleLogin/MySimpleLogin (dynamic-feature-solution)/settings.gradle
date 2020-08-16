@@ -1,0 +1,4 @@
+include ':chat'
+include ':core'
+rootProject.name='My Simple Login'
+include ':app'
