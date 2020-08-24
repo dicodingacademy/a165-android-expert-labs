@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         val factory = MainViewModelFactory.getInstance()
         val viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
 
-        viewModel.getMessage("Dicoding")
+        viewModel.setName("Dicoding")
         viewModel.message.observe(this, Observer {
             tv_welcome.text = it.welcomeMessage
         })

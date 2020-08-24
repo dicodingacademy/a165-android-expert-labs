@@ -11,7 +11,7 @@ class MainViewModel(private val messageUseCase: MessageUseCase) : ViewModel() {
 
     val message: LiveData<MessageEntity> get() = _message
     
-    fun getMessage(name: String) {
+    fun setName(name: String) {
         _message.value = messageUseCase.getMessage(name)
     }
 }
