@@ -28,6 +28,6 @@ class MainActivityTest : KoinTest{
     @Test
     fun getUsernameFromRepository() {
         val requestedUsername = userRepository.getUser()
-        assertEquals("Welcome $username", requestedUsername)
+        assertEquals(username, requestedUsername)
     }
 }
