@@ -3,21 +3,23 @@ package com.dicoding.mysimplelogin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
+import android.util.Log
+import com.dicoding.mysimplelogin.databinding.ActivityMainBinding
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var binding: ActivityMainBinding
     @Inject
     lateinit var userRepository: UserRepository
-
     @Inject
     lateinit var userRepository2: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 //        hapus kode berikut
 //        val sesi = SessionManager(this)
@@ -27,16 +29,17 @@ class MainActivity : AppCompatActivity() {
         userRepository2.checkInstance()
 
         if (userRepository.isUserLogin()) {
+            Log.d("TAG", "onCreate: "+ userRepository.isUserLogin())
             moveToHomeActivity()
         }
 
-        btn_login.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             saveSession()
         }
     }
 
     private fun saveSession() {
-        userRepository.loginUser(ed_username.text.toString())
+        userRepository.loginUser(binding.edUsername.text.toString())
         moveToHomeActivity()
     }
 
