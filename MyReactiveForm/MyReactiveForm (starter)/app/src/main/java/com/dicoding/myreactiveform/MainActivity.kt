@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         // jika semua field sudah terisi, enable button submit
         if (emailValid && passwordValid && passwordConfirmationValid) {
             btn_register.isEnabled = true
-            btn_register.setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent))
+            btn_register.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_200))
         } else {
             btn_register.isEnabled = false
             btn_register.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray))
