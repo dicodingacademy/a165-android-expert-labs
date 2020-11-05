@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.launch
@@ -23,7 +23,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        ed_place.addTextChangedListener(object : TextWatcher {
+        val edPlace = findViewById<AutoCompleteTextView>(R.id.ed_place)
+
+        edPlace.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -44,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             }
             val adapter = ArrayAdapter(this@MainActivity, android.R.layout.select_dialog_item, placesName)
             adapter.notifyDataSetChanged()
-            ed_place.setAdapter(adapter)
+            edPlace.setAdapter(adapter)
         })
     }
 }
