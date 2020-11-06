@@ -16,6 +16,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val sesi = SessionManager(this)
         userRepository = UserRepository.getInstance(sesi)
 

@@ -6,29 +6,31 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.core.SessionManager
 import com.dicoding.core.UserRepository
+import com.dicoding.mysimplelogin.databinding.ActivityHomeBinding
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
-import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
 
+    lateinit var binding: ActivityHomeBinding
     lateinit var userRepository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val sesi = SessionManager(this)
         userRepository = UserRepository.getInstance(sesi)
 
-        tv_welcome.text = "Welcome ${userRepository.getUser()}"
+        binding.tvWelcome.text = "Welcome ${userRepository.getUser()}"
 
-        btn_logout.setOnClickListener {
+        binding.btnLogout.setOnClickListener {
             userRepository.logoutUser()
             moveToMainActivity()
         }
 
-        fab.setOnClickListener {
+        binding.fab.setOnClickListener {
             try {
 //                hapus kode berikut
 //                moveToChatActivity()
