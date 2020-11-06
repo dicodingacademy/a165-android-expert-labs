@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:hint="@string/username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,9 +21,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_username"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            />
+            android:layout_height="wrap_content"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -31,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:hint="@string/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,6 @@
             android:id="@+id/ed_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -49,8 +48,7 @@
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/colorAccent"
+        android:layout_margin="8dp"
         android:text="@string/login"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
