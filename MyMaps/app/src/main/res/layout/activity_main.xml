@@ -23,7 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
-        android:background="@color/colorAccent"
+        android:backgroundTint="@color/teal_200"
         android:text="@string/start_navigation"
         android:textColor="@android:color/white"
         android:visibility="gone"

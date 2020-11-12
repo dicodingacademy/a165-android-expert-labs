@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.animation.BounceInterpolator
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.mapbox.android.core.permissions.PermissionsListener
@@ -20,6 +21,7 @@ import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.LocationComponentOptions
 import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.location.modes.RenderMode
+import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager
@@ -28,8 +30,6 @@ import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute
-import kotlinx.android.synthetic.main.activity_main.*
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         private const val ICON_ID = "ICON_ID"
     }
 
+    private lateinit var mapView: MapView
+    private lateinit var btnNavigation: Button
     private lateinit var mapboxMap: MapboxMap
     private lateinit var symbolManager: SymbolManager
     private lateinit var locationComponent: LocationComponent
@@ -49,8 +51,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mapView?.onCreate(savedInstanceState)
-        mapView?.getMapAsync { mapboxMap ->
+        mapView = findViewById(R.id.mapView)
+        btnNavigation = findViewById(R.id.btnNavigation)
+
+        mapView.onCreate(savedInstanceState)
+        mapView.getMapAsync { mapboxMap ->
             this.mapboxMap = mapboxMap
             mapboxMap.setStyle(Style.Builder().fromUri("mapbox://styles/arifaizin/ckc32d2at0g9s1iqoswtaqni8")) { style ->
                 symbolManager = SymbolManager(mapView, mapboxMap, style)
