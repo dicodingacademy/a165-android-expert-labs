@@ -9,13 +9,13 @@ java {
 }
 
 ext {
-    lintVersion = "27.1.0" //gradle + 23.0.0
+    lintVersion = "27.1.2" //gradle + 23.0.0
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "com.android.tools.lint:lint-api:$lintVersion"
-    implementation "com.android.tools.lint:lint-checks:$lintVersion"
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compileOnly "com.android.tools.lint:lint-api:$lintVersion"
+    compileOnly "com.android.tools.lint:lint-checks:$lintVersion"
 }
 
 jar {
