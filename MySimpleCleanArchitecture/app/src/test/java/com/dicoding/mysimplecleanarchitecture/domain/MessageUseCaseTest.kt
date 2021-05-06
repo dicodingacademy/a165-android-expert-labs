@@ -1,5 +1,6 @@
 package com.dicoding.mysimplecleanarchitecture.domain
 
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -22,10 +23,11 @@ class MessageUseCaseTest {
     }
 
     @Test fun `should get data from repository`() {
-        messageUseCase.getMessage(NAME)
+        val message = messageUseCase.getMessage(NAME)
 
         verify(messageRepository).getWelcomeMessage(NAME)
         verifyNoMoreInteractions(messageRepository)
+        Assert.assertEquals("Hello $NAME Welcome to Clean Architecture", message.welcomeMessage)
     }
 
     companion object {
