@@ -40,10 +40,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.searchResult.observe(this, Observer { placesItem ->
-            val placesName = arrayListOf<String?>()
-            placesItem.map {
-                placesName.add(it.placeName)
-            }
+            val placesName = placesItem.map { it.placeName }
             val adapter = ArrayAdapter(this@MainActivity, android.R.layout.select_dialog_item, placesName)
             adapter.notifyDataSetChanged()
             edPlace.setAdapter(adapter)
