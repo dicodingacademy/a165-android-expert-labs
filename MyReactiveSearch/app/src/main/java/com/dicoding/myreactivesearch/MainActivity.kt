@@ -34,16 +34,17 @@ class MainActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 lifecycleScope.launch {
-                    viewModel.queryChannel.send(s.toString())
+                    viewModel.queryChannel.value = s.toString()
                 }
             }
         })
 
-        viewModel.searchResult.observe(this, Observer { placesItem ->
+        viewModel.searchResult.observe(this) { placesItem ->
             val placesName = placesItem.map { it.placeName }
-            val adapter = ArrayAdapter(this@MainActivity, android.R.layout.select_dialog_item, placesName)
+            val adapter =
+                ArrayAdapter(this@MainActivity, android.R.layout.select_dialog_item, placesName)
             adapter.notifyDataSetChanged()
             edPlace.setAdapter(adapter)
-        })
+        }
     }
 }
