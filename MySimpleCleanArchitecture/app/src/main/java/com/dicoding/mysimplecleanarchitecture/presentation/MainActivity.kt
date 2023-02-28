@@ -1,11 +1,8 @@
 package com.dicoding.mysimplecleanarchitecture.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.dicoding.mysimplecleanarchitecture.R
 import com.dicoding.mysimplecleanarchitecture.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,8 +19,8 @@ class MainActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
 
         viewModel.setName("Dicoding")
-        viewModel.message.observe(this, Observer {
+        viewModel.message.observe(this) {
             binding.tvWelcome.text = it.welcomeMessage
-        })
+        }
     }
 }
