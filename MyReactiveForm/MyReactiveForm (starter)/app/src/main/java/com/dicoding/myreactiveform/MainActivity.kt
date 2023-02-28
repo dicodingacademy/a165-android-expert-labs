@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     private var passwordValid = false
     private var passwordConfirmationValid = false
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

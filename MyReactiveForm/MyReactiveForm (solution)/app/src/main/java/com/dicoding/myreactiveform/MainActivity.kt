@@ -12,7 +12,7 @@ import io.reactivex.functions.Function3
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
