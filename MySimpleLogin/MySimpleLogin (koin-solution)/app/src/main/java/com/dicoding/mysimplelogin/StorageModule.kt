@@ -7,7 +7,7 @@ val storageModule = module {
         SessionManager(get())
     }
 
-    single {
+    factory {
         UserRepository(get())
     }
 }

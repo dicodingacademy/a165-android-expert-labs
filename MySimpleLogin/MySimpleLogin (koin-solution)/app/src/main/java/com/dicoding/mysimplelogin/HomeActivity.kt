@@ -1,14 +1,14 @@
 package com.dicoding.mysimplelogin
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.mysimplelogin.databinding.ActivityHomeBinding
 import org.koin.android.ext.android.inject
 
 class HomeActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityHomeBinding
+    private lateinit var binding: ActivityHomeBinding
     private val userRepository: UserRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
