@@ -1,16 +1,16 @@
 package com.dicoding.mysimplelogin
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.mysimplelogin.databinding.ActivityHomeBinding
 import com.dicoding.core.SessionManager
 import com.dicoding.core.UserRepository
-import com.dicoding.mysimplelogin.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityHomeBinding
-    lateinit var userRepository: UserRepository
+    private lateinit var binding: ActivityHomeBinding
+    private lateinit var userRepository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

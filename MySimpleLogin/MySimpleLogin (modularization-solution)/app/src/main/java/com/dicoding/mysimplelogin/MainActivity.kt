@@ -3,9 +3,9 @@ package com.dicoding.mysimplelogin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.dicoding.core.SessionManager
-import com.dicoding.core.UserRepository
 import com.dicoding.mysimplelogin.databinding.ActivityMainBinding
+import com.dicoding.core.UserRepository
+import com.dicoding.core.SessionManager
 
 class MainActivity : AppCompatActivity() {
 
