@@ -14,7 +14,7 @@
     </dist:module>
 
     <application>
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ChatActivity" />
     </application>
 
 </manifest>

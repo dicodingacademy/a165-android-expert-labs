@@ -4,16 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.mysimplelogin.databinding.ActivityHomeBinding
 import com.dicoding.core.SessionManager
 import com.dicoding.core.UserRepository
-import com.dicoding.mysimplelogin.databinding.ActivityHomeBinding
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
 
 class HomeActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityHomeBinding
-    lateinit var userRepository: UserRepository
+    private lateinit var binding: ActivityHomeBinding
+    private lateinit var userRepository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

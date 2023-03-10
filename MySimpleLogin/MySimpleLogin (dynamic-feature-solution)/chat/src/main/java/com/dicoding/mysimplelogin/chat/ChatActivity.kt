@@ -12,6 +12,7 @@ class ChatActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat)
 
         val tvChat = findViewById<TextView>(R.id.tv_chat)
+
         val sesi = SessionManager(this)
         val userRepository = UserRepository.getInstance(sesi)
         tvChat.text = "Hello ${userRepository.getUser()}!\n Welcome to Chat Feature"
