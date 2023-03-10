@@ -7,8 +7,8 @@ import com.dicoding.mysimplelogin.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityHomeBinding
-    lateinit var userRepository: UserRepository
+    private lateinit var binding: ActivityHomeBinding
+    private lateinit var userRepository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
