@@ -3,17 +3,14 @@ package com.dicoding.mysimplelogin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.dicoding.mysimplelogin.databinding.ActivityMainBinding
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     @Inject
     lateinit var userRepository: UserRepository
-    @Inject
-    lateinit var userRepository2: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as MyApplication).appComponent.inject(this)
@@ -25,11 +22,7 @@ class MainActivity : AppCompatActivity() {
 //        val sesi = SessionManager(this)
 //        userRepository = UserRepository.getInstance(sesi)
 
-        userRepository.checkInstance()
-        userRepository2.checkInstance()
-
         if (userRepository.isUserLogin()) {
-            Log.d("TAG", "onCreate: "+ userRepository.isUserLogin())
             moveToHomeActivity()
         }
 
