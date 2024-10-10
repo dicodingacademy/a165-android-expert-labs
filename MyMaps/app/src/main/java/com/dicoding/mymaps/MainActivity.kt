@@ -1,10 +1,20 @@
 package com.dicoding.mymaps
 
+import android.annotation.SuppressLint
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.mymaps.databinding.ActivityMainBinding
+import com.mapbox.android.core.permissions.PermissionsListener
+import com.mapbox.android.core.permissions.PermissionsManager
+import com.mapbox.common.location.AccuracyLevel
+import com.mapbox.common.location.DeviceLocationProvider
+import com.mapbox.common.location.IntervalSettings
+import com.mapbox.common.location.LocationProviderRequest
+import com.mapbox.common.location.LocationServiceFactory
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.Style
@@ -13,10 +23,16 @@ import com.mapbox.maps.extension.style.layers.properties.generated.ProjectionNam
 import com.mapbox.maps.extension.style.layers.properties.generated.TextAnchor
 import com.mapbox.maps.extension.style.projection.generated.projection
 import com.mapbox.maps.extension.style.style
+import com.mapbox.maps.plugin.PuckBearing
 import com.mapbox.maps.plugin.annotation.annotations
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
 import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
+import com.mapbox.maps.plugin.gestures.GesturesPlugin
+import com.mapbox.maps.plugin.locationcomponent.createDefault2DPuck
+import com.mapbox.maps.plugin.locationcomponent.location
 import com.mapbox.maps.plugin.scalebar.scalebar
+import com.mapbox.maps.plugin.viewport.viewport
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,11 +42,12 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var btnNavigation: Button
-//    private lateinit var mapboxMap: MapboxMap
+
+    //    private lateinit var mapboxMap: MapboxMap
 //    private lateinit var symbolManager: SymbolManager
 //    private lateinit var locationComponent: LocationComponent
 //    private lateinit var mylocation: LatLng
-//    private lateinit var permissionsManager: PermissionsManager
+    private lateinit var permissionsManager: PermissionsManager
 //    private lateinit var navigationMapRoute: NavigationMapRoute
 //    private var currentRoute: DirectionsRoute? = null
 
@@ -49,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         showDicodingSpace()
-//        showMyLocation()
+        showMyLocation()
 //        addMarkerOnClick()
 //        showNavigation()
     }
@@ -78,57 +95,73 @@ class MainActivity : AppCompatActivity() {
         binding.mapView.mapboxMap.setCamera(cameraPosition)
     }
 
-//    @SuppressLint("MissingPermission")
-//    private fun showMyLocation() {
-//        if (PermissionsManager.areLocationPermissionsGranted(this)) {
-//            val locationComponentOptions = LocationComponentOptions.builder(this)
-//                .pulseEnabled(true)
-//                .pulseColor(Color.BLUE)
-//                .pulseAlpha(.4f)
-//                .pulseInterpolator(BounceInterpolator())
-//                .build()
-//            val locationComponentActivationOptions = LocationComponentActivationOptions
-//                .builder(this, style)
-//                .locationComponentOptions(locationComponentOptions)
-//                .build()
-//            locationComponent = mapboxMap.locationComponent
-//            locationComponent.activateLocationComponent(locationComponentActivationOptions)
-//            locationComponent.isLocationComponentEnabled = true
-//            locationComponent.cameraMode = CameraMode.TRACKING
-//            locationComponent.renderMode = RenderMode.COMPASS
-//
-//            mylocation = LatLng(
-//                locationComponent.lastKnownLocation?.latitude as Double,
-//                locationComponent.lastKnownLocation?.longitude as Double
-//            )
-//            mapboxMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 12.0))
-//
-//        } else {
-//            permissionsManager = PermissionsManager(object : PermissionsListener {
-//                override fun onExplanationNeeded(permissionsToExplain: MutableList<String>?) {
-//                    Toast.makeText(
-//                        this@MainActivity,
-//                        "Anda harus mengizinkan location permission untuk menggunakan aplikasi ini",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//
-//                override fun onPermissionResult(granted: Boolean) {
-//                    if (granted) {
-//                        mapboxMap.getStyle { style ->
-//                            showMyLocation(style)
-//                        }
-//                    } else {
-//                        finish()
-//                    }
-//                }
-//            })
-//            permissionsManager.requestLocationPermissions(this)
-//        }
-//    }
-//
+    @SuppressLint("MissingPermission")
+    private fun showMyLocation() {
+        if (PermissionsManager.areLocationPermissionsGranted(this)) {
+            with(binding.mapView) {
+                location.locationPuck = createDefault2DPuck(withBearing = true)
+                location.enabled = true
+                location.puckBearing = PuckBearing.COURSE
+                location.puckBearingEnabled = true
+                viewport.transitionTo(
+                    targetState = viewport.makeFollowPuckViewportState(),
+                    transition = viewport.makeImmediateViewportTransition()
+                )
+
+                val locationService = LocationServiceFactory.getOrCreate()
+                var locationProvider: DeviceLocationProvider? = null
+
+                val request = LocationProviderRequest.Builder()
+                    .interval(
+                        IntervalSettings.Builder().interval(0L).minimumInterval(0L)
+                            .maximumInterval(0L).build()
+                    )
+                    .displacement(0F)
+                    .accuracy(AccuracyLevel.HIGHEST)
+                    .build();
+
+                val result = locationService.getDeviceLocationProvider(request)
+                if (result.isValue) {
+                    locationProvider = result.value!!
+                    locationProvider.getLastLocation {
+                        it?.let { location ->
+                            val cameraPosition = CameraOptions.Builder()
+                                .zoom(8.0)
+                                .center(Point.fromLngLat(location.longitude, location.latitude))
+                                .build()
+                            binding.mapView.mapboxMap.setCamera(cameraPosition)
+                        }
+                    }
+                } else {
+                    Log.e("", "Failed to get device location provider")
+                }
+            }
+
+
+        } else {
+            permissionsManager = PermissionsManager(object : PermissionsListener {
+                override fun onExplanationNeeded(permissionsToExplain: List<String>) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Anda harus mengizinkan location permission untuk menggunakan aplikasi ini",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onPermissionResult(granted: Boolean) {
+                    if (granted) {
+                        showMyLocation()
+                    } else {
+                        finish()
+                    }
+                }
+            })
+            permissionsManager.requestLocationPermissions(this)
+        }
+    }
+
 //    private fun addMarkerOnClick() {
-//        mapboxMap.addOnMapClickListener { point ->
+//        binding.mapView.addTouchables().addOnMapClickListener { point ->
 //            symbolManager.deleteAll()
 //
 //            symbolManager.create(
